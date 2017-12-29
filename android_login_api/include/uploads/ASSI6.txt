@@ -1,0 +1,105 @@
+===========================================IMPLICIT AND EXPLICIT=================================
+Set serveroutput on
+declare
+finished INTEGER DEFAULT 0;
+v_id INTEGER DEFAULT 0;
+v_name VARCHAR(20) DEFAULT '';
+v_sal INTEGER DEFAULT 0;
+v_avg INTEGER DEFAULT 0;
+v_raise INTEGER DEFAULT 0;
+dept_n VARCHAR(10);
+CURSOR emp_cursor IS SELECT emp_id, name, salary,dept FROM old_emp;
+BEGIN
+SELECT AVG(salary) INTO v_avg from old_emp;
+OPEN emp_cursor;
+LOOP
+FETCH emp_cursor INTO v_id, v_name,v_sal,dept_n;
+EXIT WHEN emp_cursor%notfound;
+IF v_sal < v_avg THEN
+INSERT INTO new_emp values(v_id,v_name,trunc(v_sal+v_sal*5/100),dept_n);
+DBMS_OUTPUT.PUT_LINE(v_sal || ' ' || v_avg);
+END IF;
+
+END LOOP;
+CLOSE emp_cursor;
+END;
+
+
+SQL> select * from old_emp;
+
+    EMP_ID NAME 		    SALARY DEPT
+---------- -------------------- ---------- ----------
+	 1 Rushikesh		      1000 A
+	 2 Prathamesh		      2000 A
+	 3 Shreya		          500 B
+	 4 Pranav		          5000 B
+	 5 Piyush		          10000 B
+	 6 Sam			          6000 C
+
+
+SQL> select * from new_emp; 
+
+    EMP_ID NAME 		    SALARY DEPT
+---------- -------------------- ---------- ----------
+	 1 Rushikesh		      1050 A
+	 2 Prathamesh		      2100 A
+	 3 Shreya		       525 B
+
+==========================================PARAMETRIZED============================================
+
+DECLARE
+    my_record  INTEGER;
+    CURSOR c1 (dept_name varchar) IS
+        SELECT AVG(salary) FROM old_emp where dept=dept_name;
+BEGIN
+    OPEN c1('B');
+    IF(c1%ISOPEN) THEN
+    DBMS_OUTPUT.PUT_LINE(' CURSOR IS OPEN');
+    ELSE
+    DBMS_OUTPUT.PUT_LINE(' CURSOR IS NOT OPEN');
+    END IF;
+    LOOP
+        FETCH c1 INTO my_record;
+        IF (c1%NOTFOUND) THEN
+        EXIT;
+        END IF;
+    	INSERT INTO dept_te3239 values('B',my_record);
+    END LOOP;
+    CLOSE c1;
+END;
+
+SQL> select * from dept_te3239;
+
+DEPT	   AVG_SALARY
+---------- ----------
+B		 5167
+
+
+===========================================CURSOR FOR LOOP==============================
+
+Set serveroutput on
+declare
+v_avg INTEGER DEFAULT 0;
+
+CURSOR c1 IS SELECT emp_id, name, salary,dept FROM old_emp;
+
+BEGIN
+SELECT AVG(salary) INTO v_avg from old_emp;
+FOR employee_rec in c1
+LOOP
+DBMS_OUTPUT.PUT_LINE(c1%ROWCOUNT||' ROWS FETCHED');
+EXIT WHEN c1%notfound;
+IF employee_rec.salary < v_avg THEN
+INSERT INTO new_emp values(employee_rec.emp_id,employee_rec.name,trunc(employee_rec.salary+employee_rec.salary*5/100),employee_rec.dept);
+END IF;
+END LOOP;
+END;
+
+SQL> select * from new_emp;
+
+    EMP_ID NAME 		    SALARY DEPT
+---------- -------------------- ---------- ----------
+	 1 Rushikesh		      1050 A
+	 2 Prathamesh		      2100 A
+	 3 Shreya		          525 B
+
