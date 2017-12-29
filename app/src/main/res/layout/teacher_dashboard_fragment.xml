@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/image23">
+
+
+
+    <ListView
+        android:id="@+id/listView2"
+        android:layout_width="wrap_content"
+        android:layout_height="380dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="11dp"
+        android:fastScrollEnabled="true"
+        android:background="@drawable/tran">
+    </ListView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/upload_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/select_file"
+        android:layout_toStartOf="@+id/textView2"
+        android:background="#ffffff"
+        app:backgroundTint="@color/colorAccent"
+        app:srcCompat="@android:drawable/stat_sys_upload" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/select_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/listView2"
+        android:layout_marginTop="18dp"
+        android:layout_toEndOf="@+id/textView2"
+        android:background="@drawable/tran"
+        app:backgroundTint="#FF3386C1"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Teacher Dashboard"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true" />
+
+    <Button
+        android:id="@+id/displist"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:background="@drawable/tran"
+        android:text="Display List"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:layout_alignTop="@+id/upload_file"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
+
+

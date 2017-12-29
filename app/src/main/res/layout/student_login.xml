@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/image23">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="37dp"
+        android:text="STUDENT LOGIN" />
+
+    <EditText
+        android:id="@+id/pass"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@+id/student_login_button"
+        android:layout_alignTop="@+id/mail"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/tran"
+        android:drawableLeft="@drawable/password"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:textColorLink="@color/navigationBarColor" />
+
+    <EditText
+        android:id="@+id/mail"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@+id/pass"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="93dp"
+        android:background="@drawable/tran"
+        android:drawableLeft="@drawable/username"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:textColorLink="@color/navigationBarColor"
+       />
+
+    <Button
+        android:id="@+id/student_login_button"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/tran"
+
+        android:text="LOGIN"
+        android:layout_below="@+id/signup_student"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:id="@+id/signup_student"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:text="New User? Sign up"
+        android:textColor="@android:color/holo_blue_dark"
+        android:layout_below="@+id/pass"
+        android:layout_alignStart="@+id/pass" />
+
+    <TextView
+        android:id="@+id/forget_student"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/signup_teacher"
+        android:layout_alignEnd="@+id/pass"
+        android:layout_alignTop="@+id/signup_student"
+        android:text="Forget Password?"
+        android:textColor="@android:color/holo_blue_dark" />
+
+</RelativeLayout>
